@@ -1,0 +1,11 @@
+body {
+    padding:1rem;
+}
+
+.task-input-container{
+    display:flex;
+}
+
+.task-submit {
+    margin-left : 1rem;
+}
