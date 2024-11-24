@@ -108,6 +108,9 @@ createTasksTable();
 listTasks();
 
 
+const taskInput = document.getElementById('task');
+taskInput.focus();
+
 let addButton = document.getElementById('task-submit-button');
 addButton.onclick = (event) => {
     event.preventDefault();
