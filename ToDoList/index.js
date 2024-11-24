@@ -44,7 +44,11 @@ function createTaskRow(tableBody,task){
 
     let deleteCell = createElement('td');
     let deleteButton = createElement('button');
-    deleteButton.textContent = 'Delete Task';
+    deleteButton.textContent = 'Delete';
+    deleteButton.onclick = function(event) {
+        tableBody.removeChild(this.closest('tr'));
+        deleteTaskFromLocalStorage(task);
+    }
     appendChildToElement(deleteCell,deleteButton)
 
     let tableRow = createElement('tr');
@@ -60,6 +64,12 @@ function addTaskToLocalStorage(){
     if (taskElt.value)
         tasks.push(taskElt.value)
     window.localStorage['tasks'] = JSON.stringify(tasks);
+}
+
+
+function deleteTaskFromLocalStorage(deleteTask) {
+    const tasks = JSON.parse(window.localStorage['tasks']);
+    window.localStorage['tasks'] = JSON.stringify(tasks.filter(task => task != deleteTask));
 }
 
 function initiateLocalStorage(){
@@ -84,3 +94,5 @@ addButton.onclick = (event) => {
     addTaskToLocalStorage();
     window.location.reload();
 }
+
+let deleteButton = document.getElementById('')
