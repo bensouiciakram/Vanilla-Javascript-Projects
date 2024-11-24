@@ -37,7 +37,10 @@ function createTaskRow(tableBody,task){
     let taskDoneCell = createElement('td');
     let taskDoneCheckbox = createElement('input');
     taskDoneCheckbox.type='checkbox';
-    if (task.completed) taskDoneCheckbox.disabled = true;
+    if (task.completed) {
+        taskDoneCheckbox.checked = true;
+        taskDoneCheckbox.disabled = true;
+    }
     taskDoneCheckbox.onclick = function(event) {
         if (event.target.value)  {
             taskDoneCheckbox.disabled = true;
@@ -82,8 +85,10 @@ function deleteTaskFromLocalStorage(deleteTask) {
 }
 
 function setTaskToCompleted(updateTask) {
-    const tasks = JSON.parse(window.localStorage['tasks']);
-    tasks.map(task => (task.message = updateTask.message)?updateTask:task);
+    let tasks = JSON.parse(window.localStorage['tasks']);
+    console.log(tasks);
+    tasks = tasks.map(task => (task.message === updateTask.message)?updateTask:task);
+    console.log(tasks);
     window.localStorage['tasks'] = JSON.stringify(tasks);
 }
 
