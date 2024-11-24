@@ -37,6 +37,9 @@ function createTaskRow(tableBody,task){
     let taskDoneCell = createElement('td');
     let taskDoneCheckbox = createElement('input');
     taskDoneCheckbox.type='checkbox';
+    taskDoneCheckbox.onclick = function(event) {
+        if (event.target.value)  taskDoneCheckbox.disabled = true;
+    }
     appendChildToElement(taskDoneCell,taskDoneCheckbox);
 
     let taskCell = createElement('td');
