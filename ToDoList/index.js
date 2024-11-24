@@ -37,20 +37,26 @@ function createTaskRow(tableBody,task){
     let taskDoneCell = createElement('td');
     let taskDoneCheckbox = createElement('input');
     taskDoneCheckbox.type='checkbox';
+    if (task.completed) taskDoneCheckbox.disabled = true;
     taskDoneCheckbox.onclick = function(event) {
-        if (event.target.value)  taskDoneCheckbox.disabled = true;
+        if (event.target.value)  {
+            taskDoneCheckbox.disabled = true;
+            task.completed = true;
+            console.log(task);
+            setTaskToCompleted(task)
+        }
     }
     appendChildToElement(taskDoneCell,taskDoneCheckbox);
 
     let taskCell = createElement('td');
-    taskCell.textContent = task;
+    taskCell.textContent = task.message;
 
     let deleteCell = createElement('td');
     let deleteButton = createElement('button');
     deleteButton.textContent = 'Delete';
     deleteButton.onclick = function(event) {
         tableBody.removeChild(this.closest('tr'));
-        deleteTaskFromLocalStorage(task);
+        deleteTaskFromLocalStorage(task.message);
     }
     appendChildToElement(deleteCell,deleteButton)
 
@@ -65,14 +71,20 @@ function addTaskToLocalStorage(){
     const taskElt = document.getElementById('task');
     const tasks = JSON.parse(window.localStorage['tasks']);
     if (taskElt.value)
-        tasks.push(taskElt.value)
+        tasks.push({completed:false,message:taskElt.value})
     window.localStorage['tasks'] = JSON.stringify(tasks);
 }
 
 
 function deleteTaskFromLocalStorage(deleteTask) {
     const tasks = JSON.parse(window.localStorage['tasks']);
-    window.localStorage['tasks'] = JSON.stringify(tasks.filter(task => task != deleteTask));
+    window.localStorage['tasks'] = JSON.stringify(tasks.filter(task => task.message != deleteTask));
+}
+
+function setTaskToCompleted(updateTask) {
+    const tasks = JSON.parse(window.localStorage['tasks']);
+    tasks.map(task => (task.message = updateTask.message)?updateTask:task);
+    window.localStorage['tasks'] = JSON.stringify(tasks);
 }
 
 function initiateLocalStorage(){
@@ -95,6 +107,12 @@ let addButton = document.getElementById('task-submit-button');
 addButton.onclick = (event) => {
     event.preventDefault();
     addTaskToLocalStorage();
+    window.location.reload();
+}
+let clearButton = document.getElementById('task-clear-button');
+clearButton.onclick = (event) => {
+    event.preventDefault();
+    localStorage.clear();
     window.location.reload();
 }
 
