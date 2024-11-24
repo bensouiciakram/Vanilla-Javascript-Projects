@@ -7,4 +7,4 @@ this is a repository for solving 15 projects using only vanilla javascript witho
 ## Project requirments:
 
     Create a to-do list with features like :
-        -adding,deleting,and marking tasks as complete Using browser local storage for persisting data.
+        -adding, deleting and marking tasks as complete Using browser local storage for persisting data.
