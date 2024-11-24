@@ -95,4 +95,3 @@ addButton.onclick = (event) => {
     window.location.reload();
 }
 
-let deleteButton = document.getElementById('')
