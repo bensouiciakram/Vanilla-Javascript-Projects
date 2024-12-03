@@ -16,3 +16,11 @@ this is a repository for solving 15 projects using only vanilla javascript witho
 ## Project requirements:
 
     build a stopwatch with start, stop and reset buttons
+
+
+# 3.Calculator:
+
+
+## Project requirements:
+
+    Develop a basic calculator with addition,subtraction,multiplication and devision.
