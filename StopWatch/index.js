@@ -1,5 +1,5 @@
 function StopWatch() {
-    this.count = 0;
+    this.count = 3599;
     this.start = false;
     this._seconds = 0;
     this._minutes = 0;
@@ -61,6 +61,11 @@ function StopWatch() {
     })
 }
 
+function addLeadingDigits(number) {
+    return number.toString().padStart(2,'0')
+}
+
+
 const stopWatch = new StopWatch();
 
 setInterval(function() {
@@ -75,10 +80,10 @@ setInterval(function() {
     stopButton.onclick = (event) => {stopWatch.stopCount()};
     
     const hours = document.querySelector('.stopwatch__hours');
-    hours.textContent = stopWatch.hours;
+    hours.textContent = addLeadingDigits(stopWatch.hours);
     const minutes = document.querySelector('.stopwatch__minutes');
-    minutes.textContent = stopWatch.minutes;
+    minutes.textContent = addLeadingDigits(stopWatch.minutes);
     const seconds = document.querySelector('.stopwatch_seconds');
-    seconds.textContent = stopWatch.seconds;
+    seconds.textContent = addLeadingDigits(stopWatch.seconds);
 },1000)
 

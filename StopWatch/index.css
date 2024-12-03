@@ -37,10 +37,23 @@
     
 }
 
+.stopwatch__start:active {
+    background-color:#c049b2;
+    
+}
+
 .stopwatch__reset {
     background-color:#574262 ;
 }
 
+.stopwatch__reset:active {
+    background-color:#442a52 ;
+}
+
 .stopwatch__stop {
     background-color: #6B5DAE;
+}
+
+.stopwatch__stop:active {
+    background-color: #44358d;
 }
